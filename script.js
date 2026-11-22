@@ -2,7 +2,7 @@
    Set CONFIG.email below to receive volunteer, enrollment and speaking requests by email. */
 const CONFIG = {
   email: "hussainsundus@gmail.com",
-  linkedin: "https://www.linkedin.com/in/sundus-hussain-359163111/"
+  linkedin: ""
 };
 
 (function () {
