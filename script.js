@@ -1,7 +1,7 @@
 /* Sundus Hussain | MDBot for Her
    Set CONFIG.email below to receive volunteer, enrollment and speaking requests by email. */
 const CONFIG = {
-  email: "",
+  email: "hussainsundus@gmail.com",
   linkedin: "https://www.linkedin.com/in/sundus-hussain-359163111/"
 };
 
