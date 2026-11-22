@@ -8,9 +8,6 @@ const CONFIG = {
 (function () {
   "use strict";
 
-  // Footer year
-  var year = document.getElementById("year");
-  if (year) year.textContent = new Date().getFullYear();
 
   // Images: try the local file first, then the online fallback, then show a placeholder
   function handleImageError(img) {
