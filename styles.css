@@ -199,3 +199,122 @@ a.media__card:hover { transform: translateY(-3px); border-color: var(--pink); }
   .js .reveal { opacity: 1; transform: none; transition: none; }
   .btn, .card, .media__card { transition: none; }
 }
+
+/* Moving photo gallery */
+.gallery-section { overflow: hidden; background: var(--tint); }
+.gallery { width: 100%; }
+.gallery__viewport { overflow: hidden; width: 100%; padding-block: 8px 14px; }
+.gallery__track {
+  display: flex;
+  width: max-content;
+  animation: gallery-scroll 48s linear infinite;
+  will-change: transform;
+}
+.gallery__group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: stretch;
+  gap: 22px;
+  padding-right: 22px;
+}
+.gallery__item {
+  position: relative;
+  flex: 0 0 clamp(245px, 29vw, 340px);
+  width: clamp(245px, 29vw, 340px);
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(20,17,43,.09);
+}
+.gallery__open {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 245px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: var(--ink-2);
+  cursor: zoom-in;
+}
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+.gallery__item:hover img { transform: scale(1.045); }
+.gallery__item figcaption {
+  padding: 14px 16px 16px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+}
+.gallery__empty {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--on-dark);
+  font-size: 14px;
+  text-align: center;
+}
+.gallery__empty code { color: var(--teal); font-family: var(--font-mono); }
+.gallery__item.img-missing img { display: none; }
+.gallery__item.img-missing .gallery__empty { display: flex; }
+.gallery__hint { margin: 12px 0 0; color: var(--muted); font-size: 13px; text-align: center; }
+.gallery__viewport:hover .gallery__track,
+.gallery__viewport:focus-within .gallery__track { animation-play-state: paused; }
+@keyframes gallery-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.gallery__dialog {
+  width: min(92vw, 1050px);
+  max-width: none;
+  max-height: 92vh;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 16px;
+  background: #100e22;
+  color: #fff;
+}
+.gallery__dialog::backdrop { background: rgba(7,6,18,.82); }
+.gallery__dialog img {
+  display: block;
+  max-width: 100%;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+.gallery__dialog p { margin: 12px 44px 0 0; color: #e8e4f2; }
+.gallery__close {
+  display: block;
+  margin: 0 0 10px auto;
+  border: 0;
+  border-radius: 8px;
+  padding: 4px 12px;
+  background: var(--pink);
+  color: var(--ink);
+  font-size: 25px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+@media (max-width: 600px) {
+  .gallery__track { animation-duration: 38s; }
+  .gallery__item { flex-basis: 78vw; width: 78vw; }
+  .gallery__open { height: 220px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery__track { animation: none; }
+  .gallery__viewport { overflow-x: auto; }
+  .gallery__item img { transition: none; }
+}
